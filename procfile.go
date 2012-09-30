@@ -12,8 +12,8 @@ type process struct {
 	Arguments []string
 }
 
-// Parse will read the contents of a procfile and returns a map of process names
-// to commands.
+// Parse will read the contents of a procfile and returns a map of string names
+// to process structs.
 func Parse(procfile string) (procs map[string]process) {
 	procs = make(map[string]process)
 
