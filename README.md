@@ -16,20 +16,13 @@ package main
 import (
 	"fmt"
 	"github.com/hecticjeff/procfile"
-	"io/ioutil"
-	"os"
 )
 
 func main() {
-	file, err := os.Open("Procfile")
-	if err != nil {
-		panic(err)
+	proclist := procfile.Parse("web: bundle exec rackup\nworker: rake resque:work")
+	for name, process := range proclist {
+		fmt.Println(name, "command", process.Command)
+		fmt.Println(name, "arguments", process.Arguments)
 	}
-	data, err := ioutil.ReadAll(file)
-	if err != nil {
-		panic(err)
-	}
-	proclist := procfile.Parse(string(data))
-	fmt.Println(proclist)
 }
 ```
