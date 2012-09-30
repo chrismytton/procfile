@@ -8,8 +8,8 @@ import (
 var procfileRegex = regexp.MustCompile("^([A-Za-z0-9_]+):\\s*(.+)$")
 
 type process struct {
-	command   string
-	arguments []string
+	Command   string
+	Arguments []string
 }
 
 // Parse will read the contents of a procfile and returns a map of process names
