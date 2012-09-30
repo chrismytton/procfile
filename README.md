@@ -16,6 +16,7 @@ package main
 import (
 	"fmt"
 	"github.com/hecticjeff/procfile"
+	"io/ioutil"
 	"os"
 )
 
@@ -24,7 +25,11 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	proclist, err := procfile.Parse(file)
+	data, err := ioutil.ReadAll(file)
+	if err != nil {
+		panic(err)
+	}
+	proclist := procfile.Parse(string(data))
 	fmt.Println(proclist)
 }
 ```
