@@ -26,3 +26,5 @@ func main() {
 	}
 }
 ```
+
+Copyright (c) Chris Mytton
