@@ -8,7 +8,7 @@ import (
 var procfileRegex = regexp.MustCompile("^([A-Za-z0-9_]+):\\s*(.+)$")
 
 type processType struct {
-	command string
+	command   string
 	arguments []string
 }
 
