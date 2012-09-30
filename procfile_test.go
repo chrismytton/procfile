@@ -1,24 +1,36 @@
 package procfile
 
 import (
-	"io/ioutil"
-	"os"
 	"testing"
 )
 
-func TestParse(t *testing.T) {
-	file, err := os.Open("test/fixtures/Procfile")
-	if err != nil {
-		t.Error(err)
+
+func TestParseBasic(t *testing.T) {
+	basicProcfile := "web: bundle exec rackup"
+	procs := Parse(basicProcfile)
+
+	if procs["web"].command != "bundle" {
+		t.Error("Expected command to be bundle but got ", procs["web"].command)
 	}
 
-	data, err := ioutil.ReadAll(file)
-	if err != nil {
-		t.Error(err)
+	if len(procs["web"].arguments) != 2 {
+		t.Error("Expected arguments to be 2 in length, got ",
+			len(procs["web"].arguments))
 	}
 
-	procs := Parse(string(data))
-	if procs["web"] != "bundle exec rackup" {
-		t.Error("Unexpected web process:", procs)
+}
+
+func TestParseMultiProcess(t *testing.T) {
+	multilineProcfile := `web: coffee server.coffee
+worker: node worker.js`
+
+	procs := Parse(multilineProcfile)
+
+	if procs["web"].command != "coffee" {
+		t.Error("Expected web command to be coffee")
+	}
+
+	if procs["worker"].command != "node" {
+		t.Error("Expected worker command to be node")
 	}
 }
