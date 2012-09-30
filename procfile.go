@@ -17,11 +17,8 @@ type processType struct {
 func Parse(procfile string) (procs map[string]processType) {
 	procs = make(map[string]processType)
 
-	lines := strings.Split(procfile, "\n")
-
-	for _, line := range lines {
-		matches := procfileRegex.FindStringSubmatch(line)
-		if matches != nil {
+	for _, line := range strings.Split(procfile, "\n") {
+		if matches := procfileRegex.FindStringSubmatch(line); matches != nil {
 			name, command := matches[1], matches[2]
 			args := strings.Split(command, " ")
 			procs[name] = processType{args[0], args[1:]}
