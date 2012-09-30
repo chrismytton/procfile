@@ -5,12 +5,12 @@ import (
 	"testing"
 )
 
-func TestParseProcfile(t *testing.T) {
+func TestParse(t *testing.T) {
 	file, err := os.Open("test/fixtures/Procfile")
 	if err != nil {
 		t.Error(err)
 	}
-	procs, err := ParseProcfile(file)
+	procs, err := Parse(file)
 	if err != nil {
 		t.Error(err)
 	}

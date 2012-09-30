@@ -9,7 +9,7 @@ import (
 
 var procfileRegex = regexp.MustCompile("^([A-Za-z0-9_]+):\\s*(.+)$")
 
-func ParseProcfile(procfile io.Reader) (ret map[string]string, err error) {
+func Parse(procfile io.Reader) (ret map[string]string, err error) {
 	ret = make(map[string]string)
 	data, err := ioutil.ReadAll(procfile)
 	if err != nil {
