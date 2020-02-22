@@ -5,7 +5,7 @@ A go package for parsing `Procfile` entries.
 ## Install
 
 ```
-go get github.com/hecticjeff/procfile
+go get github.com/chrismytton/procfile
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/hecticjeff/procfile"
+	"github.com/chrismytton/procfile"
 )
 
 func main() {
